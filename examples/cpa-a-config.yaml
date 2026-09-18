@@ -1,0 +1,5 @@
+port: 8317
+api-keys:
+  - router-to-cpa-a
+# Keep the production Antigravity/provider settings identical to CPA-B.
+# The only experimental difference should be the credential set mounted in auth-a/.

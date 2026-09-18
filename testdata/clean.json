@@ -1,0 +1,1 @@
+{"model":"gemini-3-flash","messages":[{"role":"user","content":"解释 Go channel 的阻塞语义"}]}

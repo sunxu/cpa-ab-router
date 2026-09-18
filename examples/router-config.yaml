@@ -1,0 +1,35 @@
+port: 8327
+api-keys:
+  - router-client-key
+
+# Router CPA should not retry across A/B provider choices.
+request-retry: 0
+
+plugins:
+  enabled: true
+  dir: plugins
+  configs:
+    sexual-ab-router:
+      enabled: true
+      priority: 100
+      provider_a: openai-compatible-cpa-a
+      provider_b: openai-compatible-cpa-b
+
+openai-compatibility:
+  - name: cpa-a
+    base-url: http://cpa-a:8317/v1
+    request-retry: 0
+    api-key-entries:
+      - api-key: router-to-cpa-a
+    models:
+      - name: gemini-3-flash
+        alias: gemini-3-flash
+
+  - name: cpa-b
+    base-url: http://cpa-b:8317/v1
+    request-retry: 0
+    api-key-entries:
+      - api-key: router-to-cpa-b
+    models:
+      - name: gemini-3-flash
+        alias: gemini-3-flash

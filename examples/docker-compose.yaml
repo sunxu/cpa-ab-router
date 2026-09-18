@@ -1,0 +1,21 @@
+services:
+  router:
+    image: ${CPA_IMAGE:?set CPA_IMAGE to your CLIProxyAPI image}
+    ports:
+      - "8327:8327"
+    volumes:
+      - ./router-config.yaml:/CLIProxyAPI/config.yaml:ro
+      - ./plugins:/CLIProxyAPI/plugins:ro
+    depends_on: [cpa-a, cpa-b]
+
+  cpa-a:
+    image: ${CPA_IMAGE:?set CPA_IMAGE to your CLIProxyAPI image}
+    volumes:
+      - ./cpa-a-config.yaml:/CLIProxyAPI/config.yaml:ro
+      - ./auth-a:/root/.cli-proxy-api
+
+  cpa-b:
+    image: ${CPA_IMAGE:?set CPA_IMAGE to your CLIProxyAPI image}
+    volumes:
+      - ./cpa-b-config.yaml:/CLIProxyAPI/config.yaml:ro
+      - ./auth-b:/root/.cli-proxy-api
